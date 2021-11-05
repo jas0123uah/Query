@@ -21,7 +21,7 @@ This website is a clone of [quora.com](quora.com).
 - Requires a `Postgres` installations
 - Run the following commands
 	```
-	git clone https://github.com/jas0123uah/authenticate_me
+	git clone https://github.com/jas0123uah/Query
 	cd authenticate_me
 	npm install
 	nmp start
