@@ -1,0 +1,39 @@
+#form-container {
+    position: relative;
+}
+#home-image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100vw;
+  height: 100vh;
+  
+}
+
+#sign-up-form{
+    display: inline-block;
+    text-align: center;
+
+}
+/* #sign-up-form{
+    position: absolute;
+  top: 50%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  height: 400px;
+  opacity: 0.5;
+  border-radius:10px
+} */
+#sign-up-form:hover{
+    opacity: 0.75;
+
+}
+h1{
+    text-align: center;
+    font-family: 'Abril Fatface', cursive;
+    color: #2e2e2e;
+}
+h2{
+    text-align: center;
+}
