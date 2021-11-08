@@ -5,6 +5,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import {NewQuestion} from "./components/NewQuestion/index"
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function App() {
           </Route>
           <Route path="/questions/new" exact>
             <Navigation isLoaded={isLoaded} />
+            <NewQuestion/>
           </Route>
         </Switch>
       )}

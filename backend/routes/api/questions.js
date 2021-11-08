@@ -1,4 +1,4 @@
-import {store} from '../../../frontend/src/index'
+//import {store} from '../../../frontend/src/index'
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 
@@ -28,15 +28,16 @@ router.post(
   '/',
   validateQuestion,
   asyncHandler(async (req, res) => {
-    const { questionTitle, questionText } = req.body;
-    const userId =getCurrentUserId(store)
+    const { questionTitle, questionText, userId } = req.body;
+    console.log(req.body, "LOOOOOOOOOOOOOOOOOOO")
+    //const userId =getCurrentUserId(store)
     const question = await Question.create({
     questionTitle,
     questionText,
     userId
   });
 
-    await setTokenCookie(res, user);
+    
 
     return res.json({
       question,

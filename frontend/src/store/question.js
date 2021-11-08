@@ -3,6 +3,8 @@ import { csrfFetch } from './csrf';
 const ADD_ONE = 'question/ADD_ONE';
 const REMOVE_ONE = 'question/REMOVE_ONE';
 const EDIT_ONE = 'question/EDIT_ONE';
+const LOAD_NEW ='question/LOAD_NEW';
+const LOAD_ALL ='question/LOAD_ALL';
 
 const addQuestion = (question) => {
   return {
@@ -25,8 +27,42 @@ const editQuestion = (question) => {
   };
 };
 
+const loadAllQuestions = (list) => {
+  return {
+  type: LOAD_ALL,
+  payload: list,
+  }
+}
+
+const loadNewQuestion = (newQuestion) => {
+  return {
+  type: LOAD_NEW,
+  payload: newQuestion,
+  }
+}
+
+export const getLatestQuestion = (question) => async dispatch => {
+  const response = await csrfFetch(`/api/questions/${question.id}`, {
+    headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(question)
+  })
+  if (response.ok) {
+        const data = await response.json();
+        dispatch(loadNewQuestion(data));
+        return data;
+    }
+
+}
 export const postQuestion = (question) => async dispatch => {
-    const response = await csrfFetch('/api/questions');
+    const response = await csrfFetch('/api/questions', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(question)
+    });
     if (response.ok) {
         const data = await response.json();
         dispatch(addQuestion(data));
@@ -34,72 +70,23 @@ export const postQuestion = (question) => async dispatch => {
     }
   };
 
-// export const restoreUser = () => async dispatch => {
-//     const response = await csrfFetch('/api/session');
-//     const data = await response.json();
-//     dispatch(setUser(data.user));
-//     return response;
-//   };
 
+const initialState = {};
 
-//   export const signup = (user) => async (dispatch) => {
-//     const { firstName, lastName, username, email, password } = user;
-//     const response = await csrfFetch("/api/users", {
-//       method: "POST",
-//       body: JSON.stringify({
-//         username,
-//         firstName,
-//         lastName,
-//         email,
-//         password,
-//       }),
-//     });
-//     const data = await response.json();
-//     dispatch(setUser(data.user));
-//     return response;
-//   };
+const questionReducer = (state = initialState, action) => {
 
-// export const login = (user) => async (dispatch) => {
-//   const { credential, password } = user;
-//   const response = await csrfFetch('/api/session', {
-//     method: 'POST',
-//     body: JSON.stringify({
-//       credential,
-//       password,
-//     }),
-//   });
-//   const data = await response.json();
-//   dispatch(setUser(data.user));
-//   return response;
-// };
+  switch (action.type) {
+      case ADD_ONE: 
+      
+      const newState = { ...state, [action.payload.question.id]: action.payload.question}
+      return newState;
+      
+     
+    
+    
+    default:
+      return state;
+  }
+};
 
-// export const logout = () => async (dispatch) => {
-//     const response = await csrfFetch('/api/session', {
-//       method: 'DELETE',
-//     });
-//     dispatch(removeUser());
-//     return response;
-// };
-
-const initialState = { user: null };
-
-// const questionReducer = (state = initialState, action) => {
-//   let newState;
-
-
-
-//   switch (action.type) {
-//     case SET_USER:
-//       newState = Object.assign({}, state);
-//       newState.user = action.payload;
-//       return newState;
-//     case REMOVE_USER:
-//       newState = Object.assign({}, state);
-//       newState.user = null;
-//       return newState;
-//     default:
-//       return state;
-//   }
-// };
-
-// export default sessionReducer;
+export default questionReducer;
