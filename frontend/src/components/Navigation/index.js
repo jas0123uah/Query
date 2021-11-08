@@ -20,10 +20,10 @@ const handleLogout = (e) => {
     return dispatch(sessionActions.logout({ credential, password }))
   };
     const demoLogin = async () =>{
-    setCredential("Demo_User");
+    setCredential("Demo-lition");
     setPassword("password");
     return dispatch(
-      sessionActions.login({ credential: "demo@demo.com", password: "password" })
+      sessionActions.login({ credential: "demo@user.io", password: "password" })
     );
   };
 
