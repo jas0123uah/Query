@@ -6,6 +6,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import {NewQuestion} from "./components/NewQuestion/index"
+import { DisplayAllQuestions } from "./components/DisplayAllQuestions";
+import {SpecificQuestion} from "./components/SpecificQuestion"
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +23,7 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <Navigation isLoaded={isLoaded} />
+            <DisplayAllQuestions/>
 
           </Route>
           <Route path="/login">
@@ -32,6 +35,13 @@ function App() {
           <Route path="/questions/new" exact>
             <Navigation isLoaded={isLoaded} />
             <NewQuestion/>
+          </Route>
+          <Route path="/questions/" exact>
+            <Navigation isLoaded={isLoaded} />
+          </Route>
+          <Route path="/questions/:id" exact>
+            <Navigation isLoaded={isLoaded} />
+            <SpecificQuestion/>
           </Route>
         </Switch>
       )}
