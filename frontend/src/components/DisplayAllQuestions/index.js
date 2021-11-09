@@ -11,13 +11,13 @@ export const DisplayAllQuestions = (params) => {
     const existingQuestions = useSelector((state) => state.question);
     //console.log(state, "<<----STATE")
     console.log("YAYYYYYYYYYYYYYYYYYYYYYYYYY")
-    console.log("ihh")
-    const existingQuestionsArray = Object.entries(existingQuestions)
+    console.log("ihhggijgjgjuytryiurtiytr")
+    //const existingQuestionsArray = Object.entries(existingQuestions)
     const [questionTitle, setQuestionTitle] = useState("");
     const [questionText, setQuestionText] = useState("");
     const [errors, setErrors] = useState([]);
     ///
-    console.log(existingQuestionsArray)
+    //console.log(existingQuestionsArray)
     console.log(existingQuestions)
     console.log(sessionUser, "<---- sessionUser")
     useEffect(() => {
@@ -25,12 +25,12 @@ export const DisplayAllQuestions = (params) => {
     }, [dispatch])
     return(
         <div>
-          {existingQuestionsArray.length >0 ? existingQuestionsArray.map(subarray =>{
+          {existingQuestions &&  Object.entries(existingQuestions)?.map(subarray =>{
             return(
           <div>
             <NavLink to={`/questions/${subarray[1].id}`}>{subarray[1].questionTitle}</NavLink>
           </div>)
-          }) : null}
+          })}
 
         </div>
     )

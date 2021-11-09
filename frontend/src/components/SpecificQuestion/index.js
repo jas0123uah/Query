@@ -1,32 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import {getQuestionById} from "../../store/currentQuestion"
+import {getQuestionById, deleteQuestionById} from "../../store/currentQuestion"
 import './SpecificQuestion.css'
 
 export const SpecificQuestion=() =>{
     const dispatch = useDispatch();
     const {id} = useParams();
+    const history = useHistory();
+    const sessionUser = useSelector((state) => state.session.user);
+    const currentQuestion = useSelector((state) => state.currentQuestion);
+    const currentAnswers = useSelector((state) => state.currentQuestion.associatedAnswers);
     const [isLoaded, setIsLoaded] = useState(false);
-    dispatch(getQuestionById(id))
-  useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-  }, [dispatch])
+    const [errors, setErrors] = useState([])
 
-  useEffect(() => {
-    console.log("Here I am!!!")
-    dispatch(getQuestionById(id));
-  }, [dispatch])
-  const currentQuestion = useSelector((state) => state.currentQuestion.question);
-  console.log(currentQuestion, "YOOOOOOO")
-  const currentAnswers = useSelector((state) => state.currentQuestion.associatedAnswers);
+
+const handleDelete = (e) => {
+    e.preventDefault();
+      const deletedQuestion = dispatch(deleteQuestionById(id))
+      if (deletedQuestion){
+        history.push("/")
+      }
+};
+    useEffect(() => {
+      dispatch(getQuestionById(id));
+    }, [dispatch])
+
+    if(!currentQuestion.question){
+        return null
+    }
+    let questionBelongsToCurrentUser= false
+    if(sessionUser && sessionUser.id == currentQuestion.question.userId){
+        questionBelongsToCurrentUser =true
+    }
 
   return(
       <div>
-          <li>{currentQuestion.questionTitle}</li>
-          <li>{currentQuestion.questionText}</li>
+          <li>{currentQuestion.question.questionTitle}</li>
+          <li>{currentQuestion.question.questionText}</li>
+          {questionBelongsToCurrentUser ? <button>Edit Question</button> : null}
+          {questionBelongsToCurrentUser ? <form onSubmit={handleDelete}>
+            <button>Delete Question</button>
+          </form> : null}
       </div>
+      
   )
 
 
