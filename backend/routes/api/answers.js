@@ -33,37 +33,37 @@ router.post(
 
 router.put('/:id(\\d+)', asyncHandler( async (req, res, next) => {
 
-  const questionId = parseInt(req.params.id)
-  let question = await Question.findByPk(questionId);
+  const{
+    answerId,
+    answerText
+
+  } = req.body
+  let answer = await Answer.findByPk(answerId);
   if (!question) {
     next(createError(404));
   }
-  const{
-    questionTitle,
-    questionText
-
-  } = req.body
-  const updates={questionTitle, questionText}
-  await question.update(updates)
-  question = await Question.findByPk(questionId);
+  const updates={answerText}
+  await answer.update(updates)
+  answer= await Question.findByPk(answerId);
 
 
-  return res.json(question)
+  return res.json(answerId)
 }))
 
 
 
 
 router.delete('/:id(\\d+)', asyncHandler( async (req, res, next) => {
-
-  const questionId = parseInt(req.params.id)
-  const question = await Question.findByPk(questionId);
-  if (!question) {
+   const{
+    answerId
+  } = req.body
+  const answer = await Answer.findByPk(questionId);
+  if (!answer) {
     next(createError(404));
   }
-  const destroyedQ= await question.destroy()
+  const destroyedAnswer= await answer.destroy()
 
-  return res.json(questionId)
+  return res.json(answerId)
 }))
 
 module.exports = router;

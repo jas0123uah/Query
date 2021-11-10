@@ -75,10 +75,23 @@ const currentQuestionReducer = (state = initialState, action) => {
   let newState
 
   switch (action.type) {
-    case LOAD_ONE: 
+    case LOAD_ONE:
+      console.log(action.payload.relevantAnswers, "<-------")
       
       //const newState = { ...state, [action.payload.question.id]: action.payload.question}
-      newState = { ...state, "question": action.payload.question, associatedAnswers:action.payload.relevantAnswers}
+      newState = { ...state, "question": action.payload.question, associatedAnswers:{}}
+      //newState = { ...state, "question": action.payload.question, associatedAnswers:action.payload.relevantAnswers}
+      let i =0;
+      while (i < action.payload.relevantAnswers.length){
+        const relevantAns = action.payload.relevantAnswers[i];
+        console.log(i, "iii")
+        console.log(relevantAns);
+        newState.associatedAnswers[relevantAns.id] = relevantAns
+        i++ 
+      }
+      // action.payload.relevantAnswers.forEach(answer => {
+      //   newState.associatedAnswers[answer.id]=answer;
+      // })
       return newState;
     case DELETE_ONE:
         newState ={question:null, associatedAnswers:null}
