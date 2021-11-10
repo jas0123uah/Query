@@ -2,6 +2,8 @@ import { csrfFetch } from './csrf';
 
 const LOAD_ONE= 'question/LOAD_ONE';
 
+const EDIT_ONE= 'question/EDIT_ONE';
+
 const loadSpecificQuestion = (question) => {
   return {
     type: LOAD_ONE,
@@ -44,6 +46,33 @@ export const deleteQuestionById = (id) => async dispatch =>{
 
 
 
+const editSpecificQuestion = (newData) => {
+  return {
+    type: EDIT_ONE,
+    payload:newData
+  }
+}
+export const editQuestionById = (question) => async dispatch =>{
+  const { questionTitle, questionText, id } = question;
+  console.log("THUNK")
+  const response = await csrfFetch(`/api/questions/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        questionTitle,
+        questionText,
+      }),
+    })
+  console.log(response, "<----")
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(editSpecificQuestion(data))
+    return data;
+  }
+
+}
+
+
+
 const initialState = {question: null, associatedAnswers:null};
 
 const currentQuestionReducer = (state = initialState, action) => {
@@ -58,6 +87,10 @@ const currentQuestionReducer = (state = initialState, action) => {
     case DELETE_ONE:
         newState ={question:null, associatedAnswers:null}
         return newState
+    case EDIT_ONE:
+      newState = { ...state, "question": action.payload.question}
+      return newState
+
     default:
       return state;
   }

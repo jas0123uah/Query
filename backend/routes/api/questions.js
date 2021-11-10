@@ -59,6 +59,30 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res, next) => {
 }))
 
 
+router.put('/:id(\\d+)', asyncHandler( async (req, res, next) => {
+
+  const questionId = parseInt(req.params.id)
+  const question = await Question.findByPk(questionId);
+  if (!question) {
+    next(createError(404));
+  }
+  const{
+    questionTitle,
+    questionText
+
+  } = req.body
+  const updates={questionTitle, questionText}
+  await question.update(updates, {returning: true, where: {id: questionId}}).then(function([ rowsUpdate, [updatedQuestion] ]) {
+   res.json(updatedQuestion)
+ })
+ .catch(next)
+
+  //return res.json(questionId)
+}))
+
+
+
+
 router.delete('/:id(\\d+)', asyncHandler( async (req, res, next) => {
 
   const questionId = parseInt(req.params.id)
