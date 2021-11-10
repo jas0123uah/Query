@@ -9,14 +9,14 @@ const validateAnswer = [
   check('answerText')
     .exists({ checkFalsy: true })
     .isLength({ max: 2000 })
-    .withMessage('Question title is at most 2000 characters.'),
+    .withMessage('Question answer is at most 2000 characters.'),
   handleValidationErrors,
 ];
 const router = express.Router();
 
 router.post(
   '/',
-  validateQuestion,
+  validateAnswer,
   asyncHandler(async (req, res) => {
     const { answerText, userId, questionId } = req.body;
     const answer = await Answer.create({

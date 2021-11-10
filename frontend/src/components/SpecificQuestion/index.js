@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import EditFormModal from '../EditQuestionModal'
 import {getQuestionById, deleteQuestionById} from "../../store/currentQuestion"
+import AnswerForm from "../answerForm";
 import './SpecificQuestion.css'
 
 export const SpecificQuestion=() =>{
@@ -44,6 +45,7 @@ const handleDelete = (e) => {
           {questionBelongsToCurrentUser ? <form onSubmit={handleDelete}>
             <button>Delete Question</button>
           </form> : null}
+          <AnswerForm/>
       </div>
       
   )
