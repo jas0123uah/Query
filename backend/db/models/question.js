@@ -11,12 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       through: 'questionToTopicsJoinTable',
       otherKey: 'topicId',
       foreignKey: 'questionId',
-      onDelete: 'CASCADE',
-      hooks: true
     }
     Question.belongsToMany(models.Topic, columnMapping);
     Question.hasMany(models.Answer, { foreignKey: 'questionId', onDelete: 'CASCADE', hooks: true })
-    Question.belongsTo(models.User);
+    Question.belongsTo(models.User, { foreignKey: 'userId' });
   };
   return Question;
 };
