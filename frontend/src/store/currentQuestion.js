@@ -54,7 +54,6 @@ const editSpecificQuestion = (newData) => {
 }
 export const editQuestionById = (question) => async dispatch =>{
   const { questionTitle, questionText, id } = question;
-  console.log("THUNK")
   const response = await csrfFetch(`/api/questions/${id}`, {
       method: 'PUT',
       body: JSON.stringify({

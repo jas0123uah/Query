@@ -40,11 +40,10 @@ const handleDelete = (e) => {
       <div>
           <li>{currentQuestion.question.questionTitle}</li>
           <li>{currentQuestion.question.questionText}</li>
-          {questionBelongsToCurrentUser ? <button>Edit Question</button> : null}
+          {questionBelongsToCurrentUser ? <EditFormModal/> : null}
           {questionBelongsToCurrentUser ? <form onSubmit={handleDelete}>
             <button>Delete Question</button>
           </form> : null}
-          {questionBelongsToCurrentUser ? <EditFormModal/> : null}
       </div>
       
   )

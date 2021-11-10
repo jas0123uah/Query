@@ -1,34 +1,46 @@
 // frontend/src/components/LoginFormModal/LoginForm.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as sessionActions from "../../store/session";
 import {editQuestionById} from "../../store/currentQuestion"
+import {useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 function EditQuestionForm() {
   const dispatch = useDispatch();
+   const history = useHistory();
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionText, setQuestionText] = useState("");
   const [errors, setErrors] = useState([]);
   const currentQuestion = useSelector((state) => state.currentQuestion);
+  const id = useSelector((state) => state.currentQuestion.question.id);
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(editQuestionById({ questionTitle, questionText })).catch(
+    console.log(currentQuestion, "MODAL")
+    console.log(id, "ID MODAL")
+    const updatedQ= dispatch(editQuestionById({ questionTitle, questionText, id })).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
     );
+    if (updatedQ) {
+      window.location.reload();
+    }
   };
+
+  useEffect(() => {
+    setQuestionTitle(currentQuestion.question.questionTitle)
+
+  setQuestionText(currentQuestion.question.questionText)
+  }, [currentQuestion.question]);
 
   if(!currentQuestion.question){
         return null
   }
-  setQuestionTitle(currentQuestion.question.questionTitle)
-
-  setQuestionText(currentQuestion.question.questionText)
+  
   
 
   return (

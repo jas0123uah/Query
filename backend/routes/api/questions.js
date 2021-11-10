@@ -29,8 +29,6 @@ router.post(
   validateQuestion,
   asyncHandler(async (req, res) => {
     const { questionTitle, questionText, userId } = req.body;
-    console.log(req.body, "LOOOOOOOOOOOOOOOOOOO")
-    //const userId =getCurrentUserId(store)
     const question = await Question.create({
     questionTitle,
     questionText,
@@ -62,7 +60,7 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res, next) => {
 router.put('/:id(\\d+)', asyncHandler( async (req, res, next) => {
 
   const questionId = parseInt(req.params.id)
-  const question = await Question.findByPk(questionId);
+  let question = await Question.findByPk(questionId);
   if (!question) {
     next(createError(404));
   }
@@ -72,12 +70,11 @@ router.put('/:id(\\d+)', asyncHandler( async (req, res, next) => {
 
   } = req.body
   const updates={questionTitle, questionText}
-  await question.update(updates, {returning: true, where: {id: questionId}}).then(function([ rowsUpdate, [updatedQuestion] ]) {
-   res.json(updatedQuestion)
- })
- .catch(next)
+  await question.update(updates)
+  question = await Question.findByPk(questionId);
 
-  //return res.json(questionId)
+
+  return res.json(question)
 }))
 
 
