@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { postQuestion } from "../../store/question";
 import { useHistory } from "react-router-dom";
-//import * as questionActions from "../../store/question";
 export const NewQuestion = (params) => {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -23,12 +22,10 @@ export const NewQuestion = (params) => {
       }
       if (!errors.length) {
         const newQuestion={questionTitle, questionText,userId:sessionUser.id}
-        console.log(newQuestion, "Newwwwww")
         const generatedQuestion = dispatch(postQuestion(newQuestion))
         if (generatedQuestion){
           history.push("/")
         }
-        console.log(generatedQuestion, "GENERATED")
         return generatedQuestion
         
       }

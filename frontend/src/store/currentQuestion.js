@@ -30,11 +30,9 @@ const deleteSpecificQuestion = (id) => {
   }
 }
 export const deleteQuestionById = (id) => async dispatch =>{
-  console.log("THUNK")
   const response = await csrfFetch(`/api/questions/${id}`, {
       method: 'DELETE',
     })
-  console.log(response, "<----")
   if (response.ok) {
     const data = await response.json();
     dispatch(deleteSpecificQuestion(data))
@@ -61,7 +59,6 @@ export const editQuestionById = (question) => async dispatch =>{
         questionText,
       }),
     })
-  console.log(response, "<----")
   if (response.ok) {
     const data = await response.json();
     dispatch(editSpecificQuestion(data))
