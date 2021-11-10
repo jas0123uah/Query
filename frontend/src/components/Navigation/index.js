@@ -28,7 +28,16 @@ const handleLogout = (e) => {
   };
 
 
+
+
+const signUpButton = <NavLink to="/signup" >
+            <button id="sign-up-button"> Sign up</button>
+            </NavLink>
+
+
 const loginButton = <NavLink to="/login"><button id="log-in-button" > Login </button></NavLink>
+const askAQuestionButton = <NavLink to="/questions/new"><button id="ask-a-question-button" > Ask a question </button></NavLink>
+const demoButton =<button id="demo-button" onClick={demoLogin}> Demo user</button>
 
 
 
@@ -45,10 +54,9 @@ const logOutButton =  <button id="log-in-button" onClick={handleLogout}> {sessio
                 <input type="search" name="searchbar" id="searchbar" placeholder="Enter your question here" />
 
             </div>
-            <button id="demo-button" onClick={demoLogin}> Demo user</button>
-            <NavLink to="/signup" >
-            <button id="sign-in-button"> Sign up</button>
-            </NavLink>
+            {sessionUser ? null : demoButton}
+            {sessionUser ? null : signUpButton}
+            {sessionUser ? askAQuestionButton : null}
             {sessionUser ? logOutButton : loginButton}
     
         </div>
