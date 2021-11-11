@@ -19,13 +19,14 @@ function App() {
 
   return (
     <>
-      {/* <Navigation isLoaded={isLoaded} /> */}
       {isLoaded && (
+        <>
+        <Navigation isLoaded={isLoaded} />
         <Switch>
           <Route path="/" exact>
-            <Navigation isLoaded={isLoaded} />
+            
             <DisplayAllQuestions/>
-            <Footer></Footer>
+            
           </Route>
 
           <Route path="/github">
@@ -39,17 +40,17 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/questions/new" exact>
-            <Navigation isLoaded={isLoaded} />
             <NewQuestion/>
           </Route>
           <Route path="/questions/" exact>
-            <Navigation isLoaded={isLoaded} />
+
           </Route>
           <Route path="/questions/:id" exact>
-            <Navigation isLoaded={isLoaded} />
             <SpecificQuestion/>
           </Route>
         </Switch>
+        <Footer></Footer>
+        </>
       )}
     </>
   );
