@@ -9,14 +9,14 @@ const validateAnswer = [
   check('answerText')
     .exists({ checkFalsy: true })
     .isLength({ max: 2000 })
-    .withMessage('Question title is at most 2000 characters.'),
+    .withMessage('Question answer is at most 2000 characters.'),
   handleValidationErrors,
 ];
 const router = express.Router();
 
 router.post(
   '/',
-  validateQuestion,
+  validateAnswer,
   asyncHandler(async (req, res) => {
     const { answerText, userId, questionId } = req.body;
     const answer = await Answer.create({
@@ -32,38 +32,33 @@ router.post(
 
 
 router.put('/:id(\\d+)', asyncHandler( async (req, res, next) => {
-
-  const questionId = parseInt(req.params.id)
-  let question = await Question.findByPk(questionId);
-  if (!question) {
+  const answerId = parseInt(req.params.id)
+  const{answerText} = req.body
+  console.log(answerText, answerId)
+  let answer = await Answer.findByPk(answerId);
+  if (!answer) {
     next(createError(404));
   }
-  const{
-    questionTitle,
-    questionText
-
-  } = req.body
-  const updates={questionTitle, questionText}
-  await question.update(updates)
-  question = await Question.findByPk(questionId);
+  const updates={answerText}
+  await answer.update(updates)
+  answer= await Answer.findByPk(answerId);
 
 
-  return res.json(question)
+  return res.json(answerId)
 }))
 
 
 
 
 router.delete('/:id(\\d+)', asyncHandler( async (req, res, next) => {
-
-  const questionId = parseInt(req.params.id)
-  const question = await Question.findByPk(questionId);
-  if (!question) {
+  const answerId = parseInt(req.params.id)
+  const answer = await Answer.findByPk(answerId);
+  if (!answer) {
     next(createError(404));
   }
-  const destroyedQ= await question.destroy()
+  await answer.destroy()
 
-  return res.json(questionId)
+  return res.json(answerId)
 }))
 
 module.exports = router;
