@@ -15,11 +15,6 @@ const addAnswer = (question) => {
   };
 };
 
-
-
-
-
-
 export const postAnswer = (answerText) => async dispatch => {
   console.log("THUNK", answerText);
     const response = await csrfFetch('/api/answers', {
@@ -35,6 +30,92 @@ export const postAnswer = (answerText) => async dispatch => {
         return data;
     }
   };
+
+
+
+const deleteAnswer = (question) => {
+  return {
+    type: DELETE_ONE_ANSWER,
+    payload: question,
+  };
+};
+
+
+
+export const deleteAnswerById = (id) => async dispatch =>{
+  console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
+  const response = await csrfFetch(`/api/answers/${id}`, {
+      method: 'DELETE',
+    })
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(deleteAnswer(data))
+    return data;
+  }
+
+}
+
+
+
+
+
+const editSpecificAnswer = (newData) => {
+  return {
+    type: EDIT_ONE_ANSWER,
+    payload:newData
+  }
+}
+export const editAnswerById = (answer) => async dispatch =>{
+  const {answerText, ansId } = answer;
+  console.log(`Thunkkkkkkkkkkkkk ${ansId}`)
+  const response = await csrfFetch(`/api/answers/${ansId}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        ansId,
+        answerText,
+      }),
+    })
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(editSpecificAnswer(data))
+    return data;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const loadSpecificQuestion = (question) => {
@@ -112,6 +193,19 @@ const currentQuestionReducer = (state = initialState, action) => {
       newState = { ...state}
       newState.associatedAnswers[action.payload.newAnswer.id]=action.payload.newAnswer
       return newState
+    
+    case DELETE_ONE_ANSWER:
+      newState = { ...state}
+      console.log(action.payload, "LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
+      delete newState.associatedAnswers[action.payload]
+      return newState
+    
+    case EDIT_ONE_ANSWER:
+      newState = { ...state}
+      console.log(action.payload, "EDITONE_ANSWER")
+      return newState
+
+
 
     
     case LOAD_ONE:

@@ -32,19 +32,16 @@ router.post(
 
 
 router.put('/:id(\\d+)', asyncHandler( async (req, res, next) => {
-
-  const{
-    answerId,
-    answerText
-
-  } = req.body
+  const answerId = parseInt(req.params.id)
+  const{answerText} = req.body
+  console.log(answerText, answerId)
   let answer = await Answer.findByPk(answerId);
-  if (!question) {
+  if (!answer) {
     next(createError(404));
   }
   const updates={answerText}
   await answer.update(updates)
-  answer= await Question.findByPk(answerId);
+  answer= await Answer.findByPk(answerId);
 
 
   return res.json(answerId)
@@ -54,14 +51,12 @@ router.put('/:id(\\d+)', asyncHandler( async (req, res, next) => {
 
 
 router.delete('/:id(\\d+)', asyncHandler( async (req, res, next) => {
-   const{
-    answerId
-  } = req.body
-  const answer = await Answer.findByPk(questionId);
+  const answerId = parseInt(req.params.id)
+  const answer = await Answer.findByPk(answerId);
   if (!answer) {
     next(createError(404));
   }
-  const destroyedAnswer= await answer.destroy()
+  await answer.destroy()
 
   return res.json(answerId)
 }))
