@@ -44,7 +44,7 @@ const handleDelete = (e) => {
   return(
       <div>
           <h2>Answers</h2>
-          <AnswerForm/>
+          {questionBelongsToCurrentUser ? null: <AnswerForm/> }
           {Object.keys(currentAnswers).length ? Object.entries(currentAnswers).map( answer => <div>
               {console.log(answer, "YAYYYYYYYYYY")}
               <p>{answer[1].answerText}</p>
