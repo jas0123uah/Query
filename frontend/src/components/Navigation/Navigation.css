@@ -3,22 +3,28 @@
     justify-content: space-evenly;
     border-bottom-style: solid;
     border-width: 1px;
-    border-color: #dee0e1;
+    border-color: #D987F0;
+    background-color: #D987F0;
 }
 #logo{
-    padding-bottom: 4px;
+    /* padding-bottom: 4px;
     padding-top: 4px;
     padding-left: 8px;
-    padding-right: 8px;
+    padding-right: 8px; */
+    text-decoration: none;
+    font-family: 'Abril Fatface', cursive;
+    font-size: 28px;
 }
 #searchbar{
-    display: flex;
+    /* display: flex; */
     align-items: center;
-    padding-bottom: 4px;
+    justify-content: center;
+    justify-self: center;
+    /* padding-bottom: 4px;
     padding-top: 4px;
     padding-left: 8px;
-    padding-right: 8px;
-    position: relative;
+    padding-right: 8px; */
+    /* position: relative; */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 15px;
     line-height: 21px;
@@ -34,5 +40,32 @@
     background-color: #2e6171;
     font-size: 13px;
     font-weight: 500;
-    padding: 10px;
+    /* padding: 10px; */
+}
+#ask-a-question-button, #log-in-button{
+    height: 30px;
+    justify-content:center;
+    background-color:#2B59C3;
+    border-radius: 15px;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 0;
+    color: white;
+    font-weight: 550;
+    transition: 0.5s;
+
+}
+#ask-a-question-button:hover {
+    background-color:#2B59E8;
+    transition: 0.5s;
+
+}
+.fa-sign-out-alt{
+    opacity: 0.5;
+    transition: 0.5s;
+}
+.fa-sign-out-alt:hover{
+    opacity: 1.0;
+    transition: 0.5s;
 }

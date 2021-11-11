@@ -36,15 +36,16 @@ const signUpButton = <NavLink to="/signup" >
 
 
 const loginButton = <NavLink to="/login"><button id="log-in-button" > Login </button></NavLink>
-const askAQuestionButton = <NavLink to="/questions/new"><button id="ask-a-question-button" > Ask a question </button></NavLink>
+const askAQuestionButton = <NavLink className="askAQuestionButton" to="/questions/new"><button id="ask-a-question-button" > Ask a question </button></NavLink>
 const demoButton =<button id="demo-button" onClick={demoLogin}> Demo user</button>
 
 
 
 
 
-const logOutButton =  <button id="log-in-button" onClick={handleLogout}> {sessionUser ? "Log out" : "Login" }</button>
+// const logOutButton =  <button id="log-in-button" onClick={handleLogout}> {sessionUser ? "Log out" : "Login" }</button>
 
+const logOutButton =  <i class="fas fa-sign-out-alt fa-2x" onClick={handleLogout}></i>
 
 
     return (
@@ -58,6 +59,9 @@ const logOutButton =  <button id="log-in-button" onClick={handleLogout}> {sessio
             {sessionUser ? null : signUpButton}
             {sessionUser ? askAQuestionButton : null}
             {sessionUser ? logOutButton : loginButton}
+            {/* <i class="fas fa-sign-out-alt fa-2x"></i> */}
+
+
     
         </div>
     )
