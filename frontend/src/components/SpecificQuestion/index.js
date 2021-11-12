@@ -38,13 +38,14 @@ const handleDelete = (e) => {
     if(sessionUser && sessionUser.id == currentQuestion.question.userId){
         questionBelongsToCurrentUser =true
     }
-
+    console.log(currentQuestion, "LOOOOOOOOOOOOOKKKKKKKKKKKKKKK")
   return(
       <div >
         <h1>Question</h1>
         <div className="specific-question">
           <span className="questionTitle">{currentQuestion.question.questionTitle}</span>
           <p className="questionText">{currentQuestion.question.questionText}</p>
+          <span class="username">{` Asked by: ${currentQuestion.question.User.username}`}</span>
           {questionBelongsToCurrentUser ? <EditFormModal/> : null}
           {questionBelongsToCurrentUser ? <form onSubmit={handleDelete} className="deleteQuestion">
             <button className="deleteButton added-margin">Delete Question</button>

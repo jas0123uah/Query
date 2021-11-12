@@ -3,7 +3,7 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 const createError = require('http-errors')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Question, Answer } = require('../../db/models');
+const { Question, Answer, User } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const validateQuestion = [
@@ -21,7 +21,7 @@ const router = express.Router();
 
 
 router.get('/', asyncHandler( async (req, res) => {
-  const allQuestions = await Question.findAll()
+  const allQuestions = await Question.findAll({include: {model:User}})
   res.json(allQuestions)
 }))
 router.post(
@@ -41,12 +41,13 @@ router.post(
 );
 router.get('/:id(\\d+)', asyncHandler( async (req, res, next) => {
   const questionId = parseInt(req.params.id)
-  const question = await Question.findByPk(questionId);
+  const question = await Question.findByPk(questionId, {include: {model:User}});
   if (!question) {
     next(createError(404));
   }
   const relevantAnswers = await Answer.findAll({
-    where: {questionId: questionId}
+    where: {questionId: questionId},
+    include: {model:User}
   }).then((res) => {
     return res.map((row) => {
       return row.dataValues;
