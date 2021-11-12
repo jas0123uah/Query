@@ -7,7 +7,7 @@ function EditAnswerFormModal({ansId, initialAnswerText}) {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Edit answer</button>
+      <button className="editAnswerButton" onClick={() => setShowModal(true) }>Edit answer</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditAnswerForm initialAnswerText={initialAnswerText} ansId={ansId}></EditAnswerForm>

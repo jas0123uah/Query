@@ -2,7 +2,7 @@ import React, {useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import {postAnswer } from "../../store/currentQuestion";
-
+import "./answerForm.css"
 function AnswerForm (params){
     const dispatch = useDispatch();
     const existingQuestions = useSelector((state) => state.question);
@@ -23,11 +23,16 @@ function AnswerForm (params){
   };
 
     return(
+        <div id ="container">
+
         <form action="" onSubmit={handleSubmit}>
-            <textarea name="answerText" id="" cols="30" rows="10"  onChange={(e) => setAnswerText(e.target.value)}></textarea>
-            <br />
-            <button>Submit answer</button>
+            <textarea name="answerText" id="newAnswer" cols="30" rows="10" value={answerText}   onChange={(e) => setAnswerText(e.target.value)}>
+            </textarea>
+            <input type="submit" value="" className=" btn fa-input fas fa-arrow-circle-up fa-2x" />
+            
+            
         </form>
+        </div>
     )
 };
 export default AnswerForm;

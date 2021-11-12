@@ -40,15 +40,15 @@ const handleDelete = (e) => {
     }
 
   return(
-      <div>
-          <li>{currentQuestion.question.questionTitle}</li>
-          <li>{currentQuestion.question.questionText}</li>
+      <div >
+        <div className="specific-question">
+          <span className="questionTitle">{currentQuestion.question.questionTitle}</span>
+          <p className="questionText">{currentQuestion.question.questionText}</p>
           {questionBelongsToCurrentUser ? <EditFormModal/> : null}
-          {questionBelongsToCurrentUser ? <form onSubmit={handleDelete}>
+          {questionBelongsToCurrentUser ? <form onSubmit={handleDelete} className="deleteQuestion">
             <button>Delete Question</button>
           </form> : null}
-          {/* <AnswerForm/> */}
-          
+        </div>
           <ShowAnswersForQuestion/>
       </div>
       

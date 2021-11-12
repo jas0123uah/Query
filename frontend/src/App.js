@@ -49,7 +49,7 @@ function App() {
             <SpecificQuestion/>
           </Route>
         </Switch>
-        <Footer></Footer>
+        
         </>
       )}
     </>

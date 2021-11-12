@@ -1,0 +1,34 @@
+.deleteButton{
+   border-radius: 15px;
+   padding-left: 10px;
+   padding-right: 10px;
+   font-weight: 500;
+   transition: 0.5s;
+   font-family: Arial;
+   color: #fff;
+   background-color: #d11a2a;
+   height: 30px;
+   border: none;
+}
+.deleteButton:hover{
+    background-color: #d52a2a;
+    transition: 0.5s;
+}
+
+.editAnswerButton{
+   border-radius: 15px;
+   padding-left: 10px;
+   padding-right: 10px;
+   font-weight: 500;
+   transition: 0.5s;
+   font-family: Arial;
+   margin-top: 5px;
+   color: #fff;
+   background-color: #2B59C3;
+   height: 30px;
+   border: none;
+}
+.editAnswerButton:hover {
+    background-color:#2B59E8;
+    transition: 0.5s;
+}

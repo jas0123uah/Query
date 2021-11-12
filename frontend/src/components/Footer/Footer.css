@@ -28,6 +28,10 @@
 }
 .github-icon,.linkedin-icon,.mail-icon{
     padding-left:8px;
+    color: black;
+}
+.fa-github-square{
+    color: black;
 }
 .a1{
     grid-area: a;
