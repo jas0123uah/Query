@@ -11,8 +11,12 @@ export const DisplayAllQuestions = (params) => {
     useEffect(() => {
         dispatch(getAllQuestions())
     }, [dispatch])
+    console.log(existingQuestions, "LOOOOOOOOOOOOOOO")
     return(
         <div>
+          <h1>Query</h1>
+          <h2>Your questions about your world answered</h2>
+          <h3 className="homepage-header-3">Queries</h3>
           {existingQuestions &&  Object.entries(existingQuestions)?.map(subarray =>{
             return(
           <div className="question-container">
@@ -20,6 +24,7 @@ export const DisplayAllQuestions = (params) => {
             <p>
               {subarray[1].questionText}
             </p>
+          <span class="username">{` Asked by: ${subarray[1].User.username}`}</span>
           </div>
           )
           })}
