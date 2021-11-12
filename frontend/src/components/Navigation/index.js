@@ -4,7 +4,8 @@ import {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as sessionActions from "../../store/session";
-
+import LoginFormModal from '../LoginFormModal';
+import SignUpFormModal from '../SignUpModal';
 import './Navigation.css';
 
 
@@ -30,12 +31,12 @@ const handleLogout = (e) => {
 
 
 
-const signUpButton = <NavLink to="/signup" >
-            <button id="sign-up-button"> Sign up</button>
-            </NavLink>
+const signUpButton = <><SignUpFormModal/></>
 
+const loginButton =<> 
+<LoginFormModal />
+</>
 
-const loginButton = <NavLink to="/login"><button id="log-in-button" > Login </button></NavLink>
 const askAQuestionButton = <NavLink className="askAQuestionButton" to="/questions/new"><button id="ask-a-question-button" > Ask a question </button></NavLink>
 const demoButton =<button id="demo-button" onClick={demoLogin}> Demo user</button>
 

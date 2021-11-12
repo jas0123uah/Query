@@ -16,7 +16,6 @@ const addAnswer = (question) => {
 };
 
 export const postAnswer = (answerText) => async dispatch => {
-  console.log("THUNK", answerText);
     const response = await csrfFetch('/api/answers', {
       method: 'POST',
       headers: {
@@ -43,7 +42,6 @@ const deleteAnswer = (question) => {
 
 
 export const deleteAnswerById = (id) => async dispatch =>{
-  console.log("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
   const response = await csrfFetch(`/api/answers/${id}`, {
       method: 'DELETE',
     })
@@ -67,7 +65,6 @@ const editSpecificAnswer = (newData) => {
 }
 export const editAnswerById = (answer) => async dispatch =>{
   const {answerText, ansId } = answer;
-  console.log(`Thunkkkkkkkkkkkkk ${ansId}`)
   const response = await csrfFetch(`/api/answers/${ansId}`, {
       method: 'PUT',
       body: JSON.stringify({
@@ -196,27 +193,24 @@ const currentQuestionReducer = (state = initialState, action) => {
     
     case DELETE_ONE_ANSWER:
       newState = { ...state}
-      console.log(action.payload, "LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
       delete newState.associatedAnswers[action.payload]
       return newState
     
     case EDIT_ONE_ANSWER:
       newState = { ...state}
-      console.log(action.payload, "EDITONE_ANSWER")
+   
       return newState
 
 
 
     
     case LOAD_ONE:
-      console.log(action.payload.relevantAnswers, "<-------")
+
       
       newState = { ...state, "question": action.payload.question, associatedAnswers:{}}
       let i =0;
       while (i < action.payload.relevantAnswers.length){
         const relevantAns = action.payload.relevantAnswers[i];
-        console.log(i, "iii")
-        console.log(relevantAns);
         newState.associatedAnswers[relevantAns.id] = relevantAns
         i++ 
       }

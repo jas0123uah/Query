@@ -29,24 +29,35 @@ function App() {
             
           </Route>
 
-          <Route path="/github">
+          <Route path="/githubSourceCode">
           {() =>{window.location.href= "https://github.com/jas0123uah/Query";
+          return null}}
+          </Route>
+          <Route path="/linkedInProfile">
+          {() =>{window.location.href= "https://www.linkedin.com/in/jay-spencer-621b44166";
+          return null}}
+          </Route>
+          <Route path="/email">
+          {() =>{window.location.href= "mailto:jas0123@uah.edu";
+          return null}}
+          </Route>
+          <Route path="/githubProfile">
+          {() =>{window.location.href= "https://github.com/jas0123uah";
           return null}}
           </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
+          
           <Route path="/questions/new" exact>
             <NewQuestion/>
           </Route>
-          <Route path="/questions/" exact>
-
-          </Route>
+          
           <Route path="/questions/:id" exact>
             <SpecificQuestion/>
+          </Route>
+          <Route>
+            <h1>Page Not Found</h1>
           </Route>
         </Switch>
         

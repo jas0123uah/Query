@@ -14,11 +14,9 @@ export const ShowAnswersForQuestion=() =>{
     const {id} = useParams();
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
-    console.log(sessionUser.id,)
     const currentQuestion = useSelector((state) => state.currentQuestion);
     const currentAnswers = useSelector((state) => state.currentQuestion.associatedAnswers);
-    console.log(currentAnswers, "<----")
-    console.log(currentAnswers.length ,"<**********")
+    console.log(currentAnswers, "<------------AHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
     const [isLoaded, setIsLoaded] = useState(false);
     const [errors, setErrors] = useState([])
 
@@ -44,17 +42,20 @@ const handleDelete = (e) => {
 
   return(
       <div className="answersContainer">
-          <h2>Answers</h2>
+          <h1 className="header-for-answers-container">Answers</h1>
           {questionBelongsToCurrentUser ? null: <AnswerForm/> }
-          {Object.keys(currentAnswers).length ? Object.entries(currentAnswers).map( answer => <div>
+          {Object.keys(currentAnswers).length ? Object.entries(currentAnswers).map( answer => 
+      
+          <div>
             <div className="single-answer">
-              <p>{answer[1].answerText}</p>
-              <p>{`Answer from User: ${answer[1].userId}`}</p>
+              <p>{answer[1]?.answerText}</p>
+              <p>{`Answer from User: ${answer[1]?.userId}`}</p>
               {answer[1].userId == sessionUser.id ? <DeleteAnswersButton ansId={answer[1].id}></DeleteAnswersButton> :null}
               {answer[1].userId == sessionUser.id ? <EditAnswerFormModal  initialAnswerText={answer[1].answerText} ansId={answer[1].id}>Edit answer</EditAnswerFormModal> :null}
 
             </div>
-          </div>) : <h3>No Answers Yet</h3>}
+            </div>) 
+            : <h3>No Answers Yet</h3>}
       </div>
       
   )

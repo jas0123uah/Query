@@ -29,3 +29,6 @@ body{
     max-width: 75%;
 
 }
+.question-container:last-of-type{
+    margin-bottom: 10px;
+}

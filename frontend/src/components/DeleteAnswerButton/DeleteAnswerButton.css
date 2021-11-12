@@ -10,12 +10,15 @@
    height: 30px;
    border: none;
 }
+.added-margin{
+    margin-bottom: 5px;
+}
 .deleteButton:hover{
     background-color: #d52a2a;
     transition: 0.5s;
 }
 
-.editAnswerButton{
+.editAnswerButton,.editQuestionButton{
    border-radius: 15px;
    padding-left: 10px;
    padding-right: 10px;
@@ -27,8 +30,9 @@
    background-color: #2B59C3;
    height: 30px;
    border: none;
+   margin-bottom: 5px;
 }
-.editAnswerButton:hover {
-    background-color:#2B59E8;
+.editAnswerButton:hover,.editQuestionButton:hover{
+    background-color:#2C79F8;
     transition: 0.5s;
 }
