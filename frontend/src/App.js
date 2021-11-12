@@ -45,9 +45,7 @@ function App() {
           {() =>{window.location.href= "https://github.com/jas0123uah";
           return null}}
           </Route>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
+        
           
           <Route path="/questions/new" exact>
             <NewQuestion/>
