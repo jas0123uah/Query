@@ -15,16 +15,24 @@
     font-weight: 400;
     
 }
+.single-answer:last-of-type{
+    margin-bottom: 10px;
+}
 .fa-arrow-circle-up{
     padding: 0;
-    border: 0;
-    background-color: white;
+    border: none;
+    border-radius:16px;
+    background-color:white;
+    margin: 0;
     color: blue;
     position: absolute;
     bottom: 0;
+    right: 1670px;
     
     
     
    
     
 }
+.header-for-answers-container{
+    font-family: 'Abril Fatface', cursive;}

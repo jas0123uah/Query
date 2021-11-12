@@ -9,7 +9,7 @@ function AnswerForm (params){
     const [answerText, setAnswerText] = useState("Enter your answer here.");
     const [errors, setErrors] = useState([]);
     const sessionUser = useSelector(state => state.session.user);
-    const userId = sessionUser.id
+    const userId = sessionUser?.id 
     const questionId = useSelector(state => state.currentQuestion.question.id);
    
 
@@ -26,9 +26,12 @@ function AnswerForm (params){
         <div id ="container">
 
         <form action="" onSubmit={handleSubmit}>
-            <textarea name="answerText" id="newAnswer" cols="30" rows="10" value={answerText}   onChange={(e) => setAnswerText(e.target.value)}>
+            <div className="ansWrap">
+              <input type="submit" value="" className=" btn fa-input fas fa-arrow-circle-up fa-2x" />
+              <textarea name="answerText" id="newAnswer" cols="30" rows="10" value={answerText}   onChange={(e) => setAnswerText(e.target.value)}>
             </textarea>
-            <input type="submit" value="" className=" btn fa-input fas fa-arrow-circle-up fa-2x" />
+            </div>
+            
             
             
         </form>

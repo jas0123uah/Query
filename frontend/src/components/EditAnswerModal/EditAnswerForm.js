@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 function EditAnswerForm({initialAnswerText, ansId}) {
   const dispatch = useDispatch();
-  console.log(initialAnswerText, ansId, "INITIAL")
-  //const [questionTitle, setQuestionTitle] = useState("");
   const [answerText, setAnswerText] = useState(initialAnswerText);
   const [errors, setErrors] = useState([]);
   const currentQuestion = useSelector((state) => state.currentQuestion);

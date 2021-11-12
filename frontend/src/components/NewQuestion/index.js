@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { postQuestion } from "../../store/question";
 import { useHistory } from "react-router-dom";
+import './NewQuestion.css'
 export const NewQuestion = (params) => {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -33,16 +34,16 @@ export const NewQuestion = (params) => {
     
   if (!sessionUser) return <Redirect to="/login" />;
     return(
-        <div>
+        <div className="newQuestionForm">
             <form onSubmit={handleSubmit} id="new-question-form">
           <h1>Query</h1>
           <h2>Your questions about your world answered</h2>
           <ul>
             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
           </ul>
-          <label>
+          <label className="newQuestionLabel">
             Question Title
-            <input
+            <input className="newQuestionInput"
               type="text"
               value={questionTitle}
               onChange={(e) => setQuestionTitle(e.target.value)}
@@ -51,9 +52,12 @@ export const NewQuestion = (params) => {
               required
             />
           </label>
-          <label>
+          <label className="newQuestionLabel">
             Description
-            <input
+            <textarea
+              className="newQuestionInput"
+              cols="30" 
+              rows="10"
               type="text"
               value={questionText}
               onChange={(e) => setQuestionText(e.target.value)}
@@ -63,7 +67,7 @@ export const NewQuestion = (params) => {
             />
           </label>
           
-          <button type="submit">Submit question</button>
+          <button type="submit" className="newQuestionButton">Submit question</button>
         </form>
         </div>
     )
