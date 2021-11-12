@@ -5,7 +5,7 @@
     margin-top: 1vh;
     
 }
-.newQuestionInput, .sign-up-input{
+.newQuestionInput, .sign-up-input, .update-answer-textarea{
     background-color: #F0A587;
     border-radius: 10px;
     border: none;
@@ -13,7 +13,20 @@
     font-weight: 600;
     font-size:  18px;
 }
-.newQuestionButton, .sign-up-button{
+.update-answer-textarea{
+    margin-left: 60px;
+   
+}
+
+.edit-answer-label{
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    font-family: 'Abril Fatface', cursive;
+    
+}
+.newQuestionButton, .sign-up-button, .update-answer-button{
     margin-top: 2vh;
     height: 30px;
     justify-content:center;
@@ -28,7 +41,12 @@
     transition: 0.5s;
     margin-left: 5px;
 }
-.newQuestionButton:hover, .sign-up-button {
+
+
+.update-answer-button{
+    margin-left:100px;
+}
+.newQuestionButton:hover, .sign-up-button:hover, .update-answer-button:hover {
 
     background-color: #2C79F8;
     transition: 0.5s;
@@ -65,4 +83,66 @@
 }
 .t{
     margin-right: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.modal-label-signup-login, .modal-input-signup-login{
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+
+.modal-input-signup-login#confirm-password{
+    margin-bottom: 0px;
+}
+
+.modal-input-signup-login{
+    background-color: #F0A587;
+    border-radius: 10px;
+    border: none;
+    color: rgb(40, 40, 41);
+    font-weight: 400;
+    font-size:  16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.modal-input-signup-login#submit, .modal-input-signup-login#loginbtn{
+    height: 30px;
+    justify-content:center;
+    background-color:#2B59C3;
+    border-radius: 15px;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 0;
+    color: white;
+    font-weight: 550;
+    transition: 0.5s;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-input-signup-login#loginbtn{
+    margin-top: 10px;
+}
+
+.modal-input-signup-login#submit:hover, .modal-input-signup-login#loginbtn:hover, #demo-button:hover, #sign-up-button:hover, #log-in-button:hover{
+     background-color: #2C79F8;
+    transition: 0.5s;
+
 }
