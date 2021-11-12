@@ -38,7 +38,6 @@ const handleDelete = (e) => {
     if(sessionUser && sessionUser.id == currentQuestion.question.userId){
         questionBelongsToCurrentUser =true
     }
-    console.log(currentAnswers, "< HIIIIIIIIIIIIIIIIIIIIIIII")
     let answers = Object.values(currentAnswers)
 
   return(

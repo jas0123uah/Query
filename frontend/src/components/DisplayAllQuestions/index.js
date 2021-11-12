@@ -11,7 +11,6 @@ export const DisplayAllQuestions = (params) => {
     useEffect(() => {
         dispatch(getAllQuestions())
     }, [dispatch])
-    console.log(existingQuestions, "LOOOOOOOOOOOOOOO")
     return(
         <div>
           <h1>Query</h1>

@@ -125,7 +125,6 @@ export const getQuestionById = (id) => async dispatch =>{
   const response = await csrfFetch(`/api/questions/${id}`)
   if (response.ok) {
     const data = await response.json();
-    console.log(data, "AHHHHHHHHHHHHHHHHHHHHHHHHHH")
     dispatch(loadSpecificQuestion(data))
     return data;
   }
