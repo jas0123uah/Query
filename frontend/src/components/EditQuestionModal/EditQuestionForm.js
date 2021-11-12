@@ -45,25 +45,32 @@ function EditQuestionForm() {
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
+      <label className="edit-question-modal-label">
         Question Title
-        <input
+        </label>
+        <textarea
+        cols="30"
+        rows="5"
+          className="edit-question-modal-input"
           type="text"
           value={questionTitle}
           onChange={(e) => setQuestionTitle(e.target.value)}
           required
         />
-      </label>
-      <label>
+      <label className="edit-question-modal-label">
         Question Description
-        <input
+        </label>
+        <textarea
+        rows="5"
+        cols="30"
           type="text"
+          className="edit-question-modal-input"
           value={questionText}
           onChange={(e) => setQuestionText(e.target.value)}
           required
         />
-      </label>
-      <button type="submit">Update my question</button>
+        <br />
+      <button id="update-question" type="submit">Update my question</button>
     </form>
   );
 }

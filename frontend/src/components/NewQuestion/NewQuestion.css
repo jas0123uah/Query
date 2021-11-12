@@ -97,7 +97,7 @@
 
 
 
-.modal-label-signup-login, .modal-input-signup-login{
+.modal-label-signup-login, .modal-input-signup-login, .edit-question-modal-label{
     display: block;
     margin-left: 10px;
     margin-right: 10px;
@@ -111,7 +111,7 @@
     margin-bottom: 0px;
 }
 
-.modal-input-signup-login{
+.modal-input-signup-login, .edit-question-modal-input{
     background-color: #F0A587;
     border-radius: 10px;
     border: none;
@@ -121,7 +121,7 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.modal-input-signup-login#submit, .modal-input-signup-login#loginbtn{
+.modal-input-signup-login#submit, .modal-input-signup-login#loginbtn, #update-question {
     height: 30px;
     justify-content:center;
     background-color:#2B59C3;
@@ -141,8 +141,21 @@
     margin-top: 10px;
 }
 
-.modal-input-signup-login#submit:hover, .modal-input-signup-login#loginbtn:hover, #demo-button:hover, #sign-up-button:hover, #log-in-button:hover{
+
+
+#update-question{
+margin-top: 10px;
+margin-left: 55px;
+margin-right: auto;
+margin-bottom: 10px;
+
+}
+.modal-input-signup-login#submit:hover, .modal-input-signup-login#loginbtn:hover, #demo-button:hover, #sign-up-button:hover, #log-in-button:hover, #update-question:hover{
      background-color: #2C79F8;
     transition: 0.5s;
 
+}
+.edit-question-modal-input{
+    margin-left: 10px;
+    margin-right: 10px;
 }
