@@ -7,6 +7,7 @@ import {getQuestionById, deleteQuestionById} from "../../store/currentQuestion"
 import AnswerForm from "../answerForm";
 import { DeleteAnswersButton } from "../DeleteAnswerButton";
 import EditAnswerFormModal from '../EditAnswerModal'
+import './ShowAnswersForQuestion.css'
 
 export const ShowAnswersForQuestion=() =>{
     const dispatch = useDispatch();
@@ -42,15 +43,17 @@ const handleDelete = (e) => {
     }
 
   return(
-      <div>
+      <div className="answersContainer">
           <h2>Answers</h2>
           {questionBelongsToCurrentUser ? null: <AnswerForm/> }
           {Object.keys(currentAnswers).length ? Object.entries(currentAnswers).map( answer => <div>
-              {console.log(answer, "YAYYYYYYYYYY")}
+            <div className="single-answer">
               <p>{answer[1].answerText}</p>
               <p>{`Answer from User: ${answer[1].userId}`}</p>
               {answer[1].userId == sessionUser.id ? <DeleteAnswersButton ansId={answer[1].id}></DeleteAnswersButton> :null}
               {answer[1].userId == sessionUser.id ? <EditAnswerFormModal  initialAnswerText={answer[1].answerText} ansId={answer[1].id}>Edit answer</EditAnswerFormModal> :null}
+
+            </div>
           </div>) : <h3>No Answers Yet</h3>}
       </div>
       

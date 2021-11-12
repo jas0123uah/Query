@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import {NewQuestion} from "./components/NewQuestion/index"
 import { DisplayAllQuestions } from "./components/DisplayAllQuestions";
 import {SpecificQuestion} from "./components/SpecificQuestion"
+import Footer from "./components/Footer"
 
 function App() {
   const dispatch = useDispatch();
@@ -18,13 +19,19 @@ function App() {
 
   return (
     <>
-      {/* <Navigation isLoaded={isLoaded} /> */}
       {isLoaded && (
+        <>
+        <Navigation isLoaded={isLoaded} />
         <Switch>
           <Route path="/" exact>
-            <Navigation isLoaded={isLoaded} />
+            
             <DisplayAllQuestions/>
+            
+          </Route>
 
+          <Route path="/github">
+          {() =>{window.location.href= "https://github.com/jas0123uah/Query";
+          return null}}
           </Route>
           <Route path="/login">
             <LoginFormPage />
@@ -33,17 +40,17 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/questions/new" exact>
-            <Navigation isLoaded={isLoaded} />
             <NewQuestion/>
           </Route>
           <Route path="/questions/" exact>
-            <Navigation isLoaded={isLoaded} />
+
           </Route>
           <Route path="/questions/:id" exact>
-            <Navigation isLoaded={isLoaded} />
             <SpecificQuestion/>
           </Route>
         </Switch>
+        
+        </>
       )}
     </>
   );
