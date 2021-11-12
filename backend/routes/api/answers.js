@@ -34,7 +34,6 @@ router.post(
 router.put('/:id(\\d+)', asyncHandler( async (req, res, next) => {
   const answerId = parseInt(req.params.id)
   const{answerText} = req.body
-  console.log(answerText, answerId)
   let answer = await Answer.findByPk(answerId);
   if (!answer) {
     next(createError(404));

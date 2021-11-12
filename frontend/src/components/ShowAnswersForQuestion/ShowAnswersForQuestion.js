@@ -16,7 +16,6 @@ export const ShowAnswersForQuestion=() =>{
     const sessionUser = useSelector((state) => state.session.user);
     const currentQuestion = useSelector((state) => state.currentQuestion);
     const currentAnswers = useSelector((state) => state.currentQuestion.associatedAnswers);
-    console.log(currentAnswers, "<------------AHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
     const [isLoaded, setIsLoaded] = useState(false);
     const [errors, setErrors] = useState([])
 
@@ -40,7 +39,6 @@ const handleDelete = (e) => {
         questionBelongsToCurrentUser =true
     }
     let answers = Object.values(currentAnswers)
-    console.log(answers, "<----- LOOK its answer!!!!!!!!")
 
   return(
       <div className="answersContainer">
@@ -54,13 +52,12 @@ const handleDelete = (e) => {
               <p>{`Answer from User: ${answer?.userId}`}</p>
               
               
-              {/* {SessionUser && ({answer[1].userId == sessionUser.id ? <DeleteAnswersButton ansId={answer[1].id}></DeleteAnswersButton> :null} )} */}
+             
 
               {sessionUser?.id && answer && (answer?.userId == sessionUser?.id ? <DeleteAnswersButton ansId={answer?.id}></DeleteAnswersButton> :null )}
 
 
-              {/* {answer[1].userId == sessionUser.id ? <DeleteAnswersButton ansId={answer[1].id}></DeleteAnswersButton> :null} */}
-
+            
               {answer?.userId == sessionUser?.id ? <EditAnswerFormModal  initialAnswerText={answer?.answerText} ansId={answer?.id}>Edit answer</EditAnswerFormModal> :null}
 
             </div>

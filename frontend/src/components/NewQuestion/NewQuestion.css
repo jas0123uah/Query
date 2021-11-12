@@ -5,7 +5,7 @@
     margin-top: 1vh;
     
 }
-.newQuestionInput{
+.newQuestionInput, .sign-up-input{
     background-color: #F0A587;
     border-radius: 10px;
     border: none;
@@ -13,7 +13,7 @@
     font-weight: 600;
     font-size:  18px;
 }
-.newQuestionButton{
+.newQuestionButton, .sign-up-button{
     margin-top: 2vh;
     height: 30px;
     justify-content:center;
@@ -28,7 +28,7 @@
     transition: 0.5s;
     margin-left: 5px;
 }
-.newQuestionButton:hover {
+.newQuestionButton:hover, .sign-up-button {
 
     background-color: #2C79F8;
     transition: 0.5s;
@@ -37,5 +37,32 @@
 .newQuestionForm{
     display: block;
     margin-left: auto;
+    margin-right: auto;
+}
+.sign-up-input#sign-up-password{
+    margin-left:aut;
+}
+.sign-up-input#sign-up-confirmPassword{
+    margin-left:10px;
+
+}
+.sign-up-input#sign-up-username{
+    padding-left: 88px;
+    text-align: left;
+}
+.sign-up-input{
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.sign-up-input#sign-up-email{
+    padding-left:88px;
+}
+.sign-up-modal-form{
+    display: block;
+    position: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+.t{
     margin-right: auto;
 }
