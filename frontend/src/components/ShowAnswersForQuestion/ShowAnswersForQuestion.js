@@ -39,19 +39,29 @@ const handleDelete = (e) => {
     if(sessionUser && sessionUser.id == currentQuestion.question.userId){
         questionBelongsToCurrentUser =true
     }
+    let answers = Object.values(currentAnswers)
+    console.log(answers, "<----- LOOK its answer!!!!!!!!")
 
   return(
       <div className="answersContainer">
           <h1 className="header-for-answers-container">Answers</h1>
           {questionBelongsToCurrentUser ? null: <AnswerForm/> }
-          {Object.keys(currentAnswers).length ? Object.entries(currentAnswers).map( answer => 
+          {answers.length ? answers.map( answer => 
       
           <div>
             <div className="single-answer">
-              <p>{answer[1]?.answerText}</p>
-              <p>{`Answer from User: ${answer[1]?.userId}`}</p>
-              {answer[1].userId == sessionUser.id ? <DeleteAnswersButton ansId={answer[1].id}></DeleteAnswersButton> :null}
-              {answer[1].userId == sessionUser.id ? <EditAnswerFormModal  initialAnswerText={answer[1].answerText} ansId={answer[1].id}>Edit answer</EditAnswerFormModal> :null}
+              <p>{answer?.answerText}</p>
+              <p>{`Answer from User: ${answer?.userId}`}</p>
+              
+              
+              {/* {SessionUser && ({answer[1].userId == sessionUser.id ? <DeleteAnswersButton ansId={answer[1].id}></DeleteAnswersButton> :null} )} */}
+
+              {sessionUser?.id && answer && (answer?.userId == sessionUser?.id ? <DeleteAnswersButton ansId={answer?.id}></DeleteAnswersButton> :null )}
+
+
+              {/* {answer[1].userId == sessionUser.id ? <DeleteAnswersButton ansId={answer[1].id}></DeleteAnswersButton> :null} */}
+
+              {answer?.userId == sessionUser?.id ? <EditAnswerFormModal  initialAnswerText={answer?.answerText} ansId={answer?.id}>Edit answer</EditAnswerFormModal> :null}
 
             </div>
             </div>) 
