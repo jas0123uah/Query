@@ -43,7 +43,7 @@ const handleDelete = (e) => {
   return(
       <div className="answersContainer">
           <h1 className="header-for-answers-container">Answers</h1>
-          {questionBelongsToCurrentUser ? null: <AnswerForm/> }
+          {questionBelongsToCurrentUser ||!sessionUser ? null: <AnswerForm/> }
           {answers.length ? answers.map( answer => 
       
           <div>
