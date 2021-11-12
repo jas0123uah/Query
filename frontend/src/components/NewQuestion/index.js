@@ -67,7 +67,7 @@ export const NewQuestion = (params) => {
             />
           </label>
           
-          <button type="submit" className="newQuestionButton">Submit question</button>
+          <button type="submit" className="newQuestionButton" id="signup">Submit question</button>
         </form>
         </div>
     )

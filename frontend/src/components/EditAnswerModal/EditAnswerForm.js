@@ -31,22 +31,27 @@ function EditAnswerForm({initialAnswerText, ansId}) {
   
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="entire-edit-form" onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
-        Answer
+      <h1 className="edit-answer-label">
+        Update your answer
+        </h1>
+        <br />
         <textarea
           type="text"
+          className="update-answer-textarea"
           value={answerText}
+          cols="20"
+          rows="10"
           onChange={(e) => setAnswerText(e.target.value)}
           required
         />
-      </label>
-      <button type="submit">Update my answer</button>
+      <br></br>
+      <button type="submit" className="update-answer-button">Update my answer</button>
     </form>
   );
 }
