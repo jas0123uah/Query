@@ -31,12 +31,7 @@ function Footer({ isLoaded }){
                 <NavLink className="mail-icon" to="/email">
                     <i className="fas fa-envelope-square fa-2x"></i>
                 </NavLink>
-            </div>
-
-    
-
-
-    
+            </div>  
         </div>
     )
 }

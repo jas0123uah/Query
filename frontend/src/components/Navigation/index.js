@@ -41,11 +41,6 @@ const askAQuestionButton = <NavLink className="askAQuestionButton" to="/question
 const demoButton =<button id="demo-button" onClick={demoLogin}> Demo user</button>
 
 
-
-
-
-// const logOutButton =  <button id="log-in-button" onClick={handleLogout}> {sessionUser ? "Log out" : "Login" }</button>
-
 const logOutButton =  <i class="fas fa-sign-out-alt fa-2x" onClick={handleLogout}></i>
 
 
@@ -60,7 +55,6 @@ const logOutButton =  <i class="fas fa-sign-out-alt fa-2x" onClick={handleLogout
             {sessionUser ? null : signUpButton}
             {sessionUser ? askAQuestionButton : null}
             {sessionUser ? logOutButton : loginButton}
-            {/* <i class="fas fa-sign-out-alt fa-2x"></i> */}
 
 
     

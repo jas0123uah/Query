@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import * as sessionActions from "../../store/session";
 import EditFormModal from '../EditQuestionModal'
-import EditAnswerFormModal from '../EditAnswerModal'
 import {getQuestionById, deleteQuestionById} from "../../store/currentQuestion"
-import AnswerForm from "../answerForm";
 import './SpecificQuestion.css'
 import { ShowAnswersForQuestion } from "../ShowAnswersForQuestion/ShowAnswersForQuestion";
 
@@ -15,9 +12,6 @@ export const SpecificQuestion=() =>{
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
     const currentQuestion = useSelector((state) => state.currentQuestion);
-    const currentAnswers = useSelector((state) => state.currentQuestion.associatedAnswers);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [errors, setErrors] = useState([])
 
 
 const handleDelete = (e) => {

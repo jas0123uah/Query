@@ -80,41 +80,6 @@ export const editAnswerById = (answer) => async dispatch =>{
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const loadSpecificQuestion = (question) => {
   return {
     type: LOAD_ONE,

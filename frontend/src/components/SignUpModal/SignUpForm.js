@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 
 function SignUpForm() {
   const dispatch = useDispatch();
-  const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");

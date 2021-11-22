@@ -10,7 +10,7 @@ export const DisplayAllQuestions = (params) => {
    
     useEffect(() => {
         dispatch(getAllQuestions())
-    }, [dispatch])
+    })
     return(
         <div>
           <h1>Query</h1>
@@ -19,11 +19,11 @@ export const DisplayAllQuestions = (params) => {
           {existingQuestions &&  Object.entries(existingQuestions)?.map(subarray =>{
             return(
           <div className="question-container">
-            <NavLink className="questionTitle" to={`/questions/${subarray[1].id}`}>{subarray[1].questionTitle}</NavLink>
+            <NavLink className="questionTitle" to={`/questions/${subarray[1]?.id}`}>{subarray[1]?.questionTitle}</NavLink>
             <p>
-              {subarray[1].questionText}
+              {subarray[1]?.questionText}
             </p>
-          <span class="username">{` Asked by: ${subarray[1].User.username}`}</span>
+          <span class="username">{` Asked by: ${subarray[1]?.User?.username}`}</span>
           </div>
           )
           })}
