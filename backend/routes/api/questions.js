@@ -2,6 +2,7 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const createError = require('http-errors')
+const sequelize = require('sequelize');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { Question, Answer, User } = require('../../db/models');
 const { check } = require('express-validator');
@@ -41,12 +42,19 @@ router.post(
 );
 router.get('/:id(\\d+)', asyncHandler( async (req, res, next) => {
   const questionId = parseInt(req.params.id)
+  const userId = req.headers.userid || null
+  console.log(req.headers)
+  console.log(questionId, userId, 'HIIIIIIIIIIIIIIIIIIIII JAY')
   const question = await Question.findByPk(questionId, {include: {model:User}});
   if (!question) {
     next(createError(404));
   }
   const relevantAnswers = await Answer.findAll({
-    where: {questionId: questionId},
+    where: {
+      questionId: questionId,
+      userId: {
+        [sequelize.Op.not]: userId
+      }},
     include: {model:User}
   }).then((res) => {
     return res.map((row) => {
@@ -54,7 +62,17 @@ router.get('/:id(\\d+)', asyncHandler( async (req, res, next) => {
     });
   });
 
-  res.json({question, relevantAnswers})
+  const userAnswer = await Answer.findAll({
+    where: {questionId: questionId,
+            userId: userId},
+    include: {model:User}
+  }).then((res) => {
+    return res.map((row) => {
+      return row.dataValues;
+    });
+  });
+
+  res.json({question, relevantAnswers, userAnswer})
 }))
 
 
