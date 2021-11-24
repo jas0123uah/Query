@@ -30,6 +30,14 @@
     padding-left:8px;
     color: black;
 }
+.fa-envelope-square:hover,.fa-linkedin:hover,.fa-github-square:hover{
+    color:#323232;
+    transition: 0.5s;
+}
+.fa-envelope-square,.fa-linkedin,.fa-github-square{
+    color: black;
+    transition: 0.5s;
+}
 .fa-github-square{
     color: black;
 }

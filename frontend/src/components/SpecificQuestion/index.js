@@ -11,6 +11,7 @@ export const SpecificQuestion=() =>{
     const {id} = useParams();
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
+    const userId = useSelector((state) => state.session?.user?.id);
     const currentQuestion = useSelector((state) => state.currentQuestion);
 
 
@@ -22,7 +23,7 @@ const handleDelete = (e) => {
       }
 };
     useEffect(() => {
-      dispatch(getQuestionById(id));
+      dispatch(getQuestionById(id, userId));
     }, [dispatch])
 
     if(!currentQuestion.question){
