@@ -11,12 +11,14 @@ export const ShowAnswersForQuestion=() =>{
     const dispatch = useDispatch();
     const {id} = useParams();
     const sessionUser = useSelector((state) => state.session.user);
+    const userId = useSelector((state) => state.session?.user?.id);
     const currentQuestion = useSelector((state) => state.currentQuestion);
     const currentAnswers = useSelector((state) => state.currentQuestion.associatedAnswers);
+    const userAnswer = useSelector((state) => state.currentQuestion.userAnswer)
 
 
     useEffect(() => {
-      dispatch(getQuestionById(id));
+      dispatch(getQuestionById(id, userId));
     }, [dispatch])
 
     if(!currentQuestion.question){
@@ -27,11 +29,31 @@ export const ShowAnswersForQuestion=() =>{
         questionBelongsToCurrentUser =true
     }
     let answers = Object.values(currentAnswers)
+    let usersAnswer = Object.values(userAnswer)
+
+    console.log(usersAnswer[0])
+  
 
   return(
       <div className="answersContainer">
           <h1 className="header-for-answers-container">Answers</h1>
-          {questionBelongsToCurrentUser ||!sessionUser ? null: <AnswerForm/> }
+          {usersAnswer.length ? 
+          <div>
+            <div className="single-answer">
+              <p>{usersAnswer[0]?.answerText}</p>
+              <p>{`Answer from : ${usersAnswer[0]?.User?.username}`}</p>
+              
+              
+
+              {sessionUser?.id && usersAnswer && (usersAnswer[0]?.userId == sessionUser?.id ? <DeleteAnswersButton ansId={usersAnswer[0]?.id}></DeleteAnswersButton> :null )}
+
+
+            
+              {usersAnswer[0]?.userId == sessionUser?.id ? <EditAnswerFormModal  initialAnswerText={usersAnswer[0]?.answerText} ansId={usersAnswer[0]?.id}>Edit answer</EditAnswerFormModal> :null}
+
+            </div>
+            </div> : null}
+          {questionBelongsToCurrentUser ||!sessionUser ||usersAnswer[0]!=null ? null: <AnswerForm/> } 
           {answers.length ? answers.map( answer => 
       
           <div>

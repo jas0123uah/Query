@@ -12,14 +12,17 @@ export const DeleteAnswersButton=({ansId}) =>{
     const currentAnswers = useSelector((state) => state.currentQuestion.associatedAnswers);
     const [isLoaded, setIsLoaded] = useState(false);
     const [errors, setErrors] = useState([])
+    const userId = useSelector((state) => state.session?.user?.id);
 
 
 const handleDelete = (e) => {
     e.preventDefault();
       const deletedQuestion = dispatch(deleteAnswerById(ansId))
+      window.location.reload()
 };
     useEffect(() => {
-      dispatch(getQuestionById(id));
+      dispatch(getQuestionById(id, userId));
+      //
     }, [dispatch])
 
     if(!currentQuestion.question){

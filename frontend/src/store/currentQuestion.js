@@ -86,8 +86,15 @@ const loadSpecificQuestion = (question) => {
     payload:question
   }
 }
-export const getQuestionById = (id) => async dispatch =>{
-  const response = await csrfFetch(`/api/questions/${id}`)
+export const getQuestionById = (id, userid) => async dispatch =>{
+  const response = await csrfFetch(`/api/questions/${id}`,
+  {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "userid": userid
+      }
+    })
   if (response.ok) {
     const data = await response.json();
     dispatch(loadSpecificQuestion(data))
@@ -172,13 +179,14 @@ const currentQuestionReducer = (state = initialState, action) => {
     case LOAD_ONE:
 
       
-      newState = { ...state, "question": action.payload.question, associatedAnswers:{}}
+      newState = { ...state, "question": action.payload.question, associatedAnswers:{}, userAnswer:null}
       let i =0;
       while (i < action.payload.relevantAnswers.length){
         const relevantAns = action.payload.relevantAnswers[i];
         newState.associatedAnswers[relevantAns.id] = relevantAns
         i++ 
       }
+      newState.userAnswer= action.payload.userAnswer
       return newState;
     case DELETE_ONE:
         newState ={question:null, associatedAnswers:null}
