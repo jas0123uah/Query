@@ -9,7 +9,7 @@ export const DisplayAllQuestions = (params) => {
     const existingQuestions = useSelector((state) => state.question);
    
     useEffect(() => {
-        dispatch(getAllQuestions(), []);
+        dispatch(getAllQuestions(), [dispatch]);
     })
     return(
         <div>
