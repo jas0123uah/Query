@@ -38,6 +38,58 @@
     color: black;
     transition: 0.5s;
 }
+.search-btn{
+    position: absolute;
+    right: 7px;
+    bottom: 0px;
+    height: 77%;
+    background-color: transparent;
+    border: none;
+    margin-bottom: 4px;
+    margin-top: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.search-form{
+    position: relative;
+}
+#searchbar{
+    border-radius: 15px;
+    height: 30px;
+    margin-bottom: 8px;
+    /* border: rgb(154, 160, 166); */
+    border: rgb(154, 160, 166) 1px solid;
+    
+}
+#searchbar:active{
+
+    /* border: rgb(154, 160, 166); */
+    border: rgb(154, 160, 166) 1px solid;
+}
 .fa-github-square{
     color: black;
 }
