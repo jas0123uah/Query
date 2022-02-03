@@ -1,11 +1,12 @@
 // frontend/src/components/Navigation/index.js
 import React from 'react';
 import {useState} from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory  } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as sessionActions from "../../store/session";
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignUpModal';
+import { runSearch } from '../../store/search';
 import './Navigation.css';
 
 
@@ -14,8 +15,9 @@ const dispatch = useDispatch();
 const sessionUser = useSelector((state) => state.session.user);
 const [credential, setCredential] = useState("");
 const [password, setPassword] = useState("");
-
-
+const [searchTerm, setSearchTerm] = React.useState("");
+const [errors, setErrors] = useState([]);
+const history = useHistory();
 const handleLogout = (e) => {
     e.preventDefault();
     return dispatch(sessionActions.logout({ credential, password }))
@@ -28,6 +30,15 @@ const handleLogout = (e) => {
     );
   };
 
+const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    const queriedQuestions= dispatch(runSearch({ searchTerm}))
+    if (queriedQuestions) {
+      history.push("/search/")
+      
+    }
+  };
 
 
 
@@ -48,9 +59,23 @@ const logOutButton =  <i class="fas fa-sign-out-alt fa-2x" onClick={handleLogout
         <div className="header-container">
             <NavLink  exact to= '/' id="logo">Query</NavLink>
             <div id="search-and-sign-in">
-                <input type="search" name="searchbar" id="searchbar" placeholder="Enter your question here" />
+
+              <form className="search-form" onSubmit={handleSubmit}>
+                <input  name="searchbar" id="searchbar" placeholder="Enter your question here"
+                value={searchTerm} onChange={event => setSearchTerm(event.target.value)}
+                />
+                <button type="submit" className="search-btn"><i class="fa fa-search"></i></button>
+              </form>
 
             </div>
+
+
+
+        
+        
+            
+
+
             {sessionUser ? null : demoButton}
             {sessionUser ? null : signUpButton}
             {sessionUser ? askAQuestionButton : null}
