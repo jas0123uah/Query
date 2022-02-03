@@ -7,7 +7,8 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import {NewQuestion} from "./components/NewQuestion/index"
 import { DisplayAllQuestions } from "./components/DisplayAllQuestions";
-import {SpecificQuestion} from "./components/SpecificQuestion"
+import {SpecificQuestion} from "./components/SpecificQuestion";
+import {DisplaySearchResults} from './components/DisplaySearchResults'
 import Footer from "./components/Footer"
 
 function App() {
@@ -26,6 +27,12 @@ function App() {
           <Route path="/" exact>
             
             <DisplayAllQuestions/>
+            
+          </Route>
+
+          <Route path="/search" exact>
+            <DisplaySearchResults/>
+            
             
           </Route>
 
